@@ -1,17 +1,19 @@
 const express = require('express');
-const pokemon = express.Router();
+const empleados = express.Router();
 const db = require('../config/database');
 
-pokemon.post("/", async(req, res, next)=>{
-    const { pok_name, pok_height, pok_weight, pok_base_experience } =req.body;
 
-    if(pok_name && pok_height && pok_weight && pok_base_experience){
-        let query="INSERT INTO pokemon (pok_name, pok_height, pok_weight, pok_base_experience)";
-        query += `VALUES('${pok_name}', ${pok_height},${pok_weight},${pok_base_experience})`;
+//Agregar nuevos empleados
+empleados.post("/", async(req, res, next)=>{
+    const {nombre, apellidos, telefono, email, direccion } =req.body;
+
+    if(nombre && apellidos && telefono && email && direccion){
+        let query="INSERT INTO empleados (nombre, apellidos, telefono, email, direccion)";
+        query += `VALUES('${nombre}', '${apellidos}','${telefono}','${email}','${direccion}')`;
         const rows = await db.query(query);
         
         if (rows.affectedRows ==1){
-            return res.status(201).json({code:201 , message:"Pokémon Insertado Correctamente" }); 
+            return res.status(201).json({code:201 , message:"Empleado Insertado Correctamente" }); 
         }
     
         return res.status(500).json({code:500, message:"Ocurrió un Error"});
@@ -19,26 +21,28 @@ pokemon.post("/", async(req, res, next)=>{
     return res.status(500).json({code:500, message:"Campos Incompletos"});
 });
 
-pokemon.delete('/:id([0-9]{1,3})', async(req,res,next)=>{
-    const query = `DELETE FROM pokemon WHERE pok_id=${req.params.id}`;
+//Eliminar empleados por su ID
+empleados.delete('/:id([0-9]{1,3})', async(req,res,next)=>{
+    const query = `DELETE FROM empleados WHERE id_empleado=${req.params.id}`;
     const rows = await db.query(query);
 
     if(rows.affectedRows ==1){
-        return res.status(200).json({code:200, message: "Pokémon Eliminado Correctamente"});
+        return res.status(200).json({code:200, message: "Empleado Eliminado Correctamente"});
     } 
-        return res.status(404).json({code:404, message: "Pokémon No Encontrado"});
+        return res.status(404).json({code:404, message: "Empleado No Encontrado"});
 });
 
-pokemon.put('/:id([0-9]{1,3})', async(req,res,next)=>{
-    const { pok_name, pok_height, pok_weight, pok_base_experience } =req.body;
+//Editar información del Empleado
+empleados.put('/:id([0-9]{1,3})', async(req,res,next)=>{
+    const { nombre, apellidos, telefono, email, direccion} =req.body;
 
-    if(pok_name && pok_height && pok_weight && pok_base_experience){
-        let query = `UPDATE pokemon SET pok_name='${pok_name}',pok_height=${pok_height},`;
-        query += `pok_weight=${pok_weight},pok_base_experience=${pok_base_experience} WHERE pok_id=${req.params.id};`;
+    if(nombre && apellidos && telefono && email){
+        let query = `UPDATE empleados SET nombre='${nombre}',apellidos='${apellidos}',`;
+        query += `telefono='${telefono}',email='${email}',direccion='${direccion}' WHERE id_empleado=${req.params.id};`;
         const rows = await db.query(query);
         
         if (rows.affectedRows ==1){
-            return res.status(200).json({code:200 , message:"Pokémon Actualizado Correctamente" }); 
+            return res.status(200).json({code:200 , message:"Empleado Actualizado Correctamente" }); 
         }
     
         return res.status(500).json({code:500, message:"Ocurrió un Error"});
@@ -46,40 +50,44 @@ pokemon.put('/:id([0-9]{1,3})', async(req,res,next)=>{
     return res.status(500).json({code:500, message:"Campos Incompletos"});
 });
 
-pokemon.patch('/:id([0-9]{1,3})', async(req,res,next)=>{
-        if(req.body.pok_name){
-        let query = `UPDATE pokemon SET pok_name='${req.body.pok_name}'WHERE pok_id=${req.params.id}`;
+//Actualizar empleado de nuevo
+empleados.patch('/:id([0-9]{1,3})', async(req,res,next)=>{
+        if(req.body.nombre){
+        let query = `UPDATE empleados SET nombre='${req.body.nombre}'WHERE id_empleado=${req.params.id}`;
         const rows = await db.query(query); 
         
         if (rows.affectedRows ==1){
-            return res.status(200).json({code:200 , message:"Pokémon Actualizado Correctamente" }); 
+            return res.status(200).json({code:200 , message:"Empleado Actualizado Correctamente" }); 
         }
         return res.status(500).json({code:500,message:"Ocurrió un Error"});
     }
     return res.status(500).json({code:500,message:"Campos incompletos"});
 });
  
-pokemon.get('/', async(req, res, next)=>{
-    const pkmn = await db.query("SELECT* FROM pokemon");
-    return res.status(200).json({code: 1, message:pkmn});
+//Mostrar todos los empleados
+empleados.get('/', async(req, res, next)=>{
+    const empi = await db.query("SELECT* FROM empleados");
+    return res.status(200).json({code: 1, message:empi});
 });
 
-pokemon.get('/:id([0-9]{1,3})', async(req, res, next)=>{
+//Mostrar empleados por búsqueda de id
+empleados.get('/:id([0-9]{1,3})', async(req, res, next)=>{
     const id = req.params.id;
     if (id >= 1 && id <= 722){ 
-        const pkmn= await db.query("SELECT * FROM pokemon WHERE pok_id="+id+";");
-        return res.status(200).json({code:200, message:pkmn});
+        const empi= await db.query("SELECT * FROM empleados WHERE id_empleado="+id+";");
+        return res.status(200).json({code:200, message:empi});
     }
-    return res.status(404).send({code:404, message:"Pokémon No encontrado"});   
+    return res.status(404).send({code:404, message:"Empleado No encontrado"});   
 });
 
-pokemon.get('/:name([A-Za-z]+)',async (req, res, next)=>{
+//Mostrar empleados po búsqueda de nombre
+empleados.get('/:name([A-Za-z]+)',async (req, res, next)=>{
     const name = req.params.name;
-    const pkmn = await db.query("SELECT * FROM  pokemon WUERE pok_name"+name+";");
-    if (pkmn.lengt>0){
-        res.status(200).send({code:200, message:pkmn}); 
+    const empi = await db.query("SELECT * FROM  empleados WHERE nombre"+name+";");
+    if (empi.lengt>0){
+        res.status(200).send({code:200, message:empi}); 
     }
-    res.status(404).send({code:404, message:"Pokémon No encontrado"});
+    res.status(404).send({code:404, message:"Empleado NO encontrado"});
 });
 
-module.exports = pokemon;
+module.exports = empleados;

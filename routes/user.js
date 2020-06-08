@@ -8,7 +8,7 @@ user.post("/signin",async(req, res, next)=>{
 
     if(email && password){
         let query = "INSERT INTO usuarios (email, password) ";
-         query += `VALUES (${email}', '${password}')`;
+         query += `VALUES ('${email}', '${password}')`;
         const rows = await db.query(query);
 
         if(rows.affectedRows==1){
@@ -27,8 +27,8 @@ user.post("/login",async(req,res,next)=>{
     if (email && password){
         if(rows.lengt ==1){
             const token = jwt.sign({
-                user_id: rows[0].user_id,
-                email: rows[0].email
+                email: rows[0].email,
+                password: rows[0].password
             },"debugkey");
             return res.status(200).json({code: 200, message:token});
         }
