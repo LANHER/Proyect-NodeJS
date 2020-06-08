@@ -4,7 +4,7 @@ const db = require('../config/database');
 
 
 //Agregar nuevos empleados
-empleados.post("/", async(req, res, next)=>{
+empleados.post("/add", async(req, res, next)=>{
     const {nombre, apellidos, telefono, email, direccion } =req.body;
 
     if(nombre && apellidos && telefono && email && direccion){

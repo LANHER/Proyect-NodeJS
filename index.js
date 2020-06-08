@@ -3,7 +3,7 @@ const morgan = require('morgan');
 const express= require('express');
 const app = express();
 //Routers
-const pokemon = require('./routes/pokemon');
+const empleado = require('./routes/empleados');
 const user = require('./routes/user');
 //Middleware
 const auth = require('./middleware/auth');
@@ -19,7 +19,7 @@ app.use(express.urlencoded({extended:true}));
 app.get("/",index);
 app.use("/user", user);
 app.use(auth);
-app.use("/pokemon",pokemon);
+app.use("/empleados",empleado);
 app.use(notFoud);
 
 app.listen(process.env.PORT||3000,()=>{
