@@ -6,9 +6,9 @@ const db = require('../config/database');
 user.post("/signin",async(req, res, next)=>{
     const{email, password} = req.body
 
-    if(user_name && email && password){
+    if(email && password){
         let query = "INSERT INTO usuarios (email, password) ";
-         query += `VALUES ('${user_name}', '${email}', '${password}')`;
+         query += `VALUES (${email}', '${password}')`;
         const rows = await db.query(query);
 
         if(rows.affectedRows==1){
