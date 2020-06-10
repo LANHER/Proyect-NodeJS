@@ -1,0 +1,217 @@
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(63, 63, 175);
+    font-family: 'Balsamiq Sans', cursive;
+}
+.box{
+    width: 700px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 200px;
+    background-color: blueviolet;
+    text-align: center;
+    margin-top: 80px;
+    -webkit-box-shadow: 4px 4px 13px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 4px 13px 0px rgba(0,0,0,0.75);
+    box-shadow: 4px 4px 13px 0px rgba(0,0,0,0.75);
+    
+}
+.box label{
+    color: #fff;
+    font-size: 20px;
+}
+
+.content label, h1{
+    color: #fff;
+
+}
+.content input{
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    background-color: rgb(245, 241, 241);
+    border: none;
+    width: 200px;
+    height: 30px;
+    margin-bottom: 15px;
+}
+.btn input{
+    background-color: rgb(245, 13, 187);
+    color: #fff;
+    cursor: pointer;
+    transition: 0.50s;
+    border: none;
+    padding: 15px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    
+}
+
+.btn input:hover{
+    background-color: rgb(177, 31, 140);
+}
+
+.sty input{
+    height: 30px;
+    background-color: rgb(245, 237, 237);
+    margin-right: 20px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    border: none;
+}
+/*MENU*/
+.menu{
+    width: 100%;
+    height: 100px;
+    top: 0;
+    background-color: blueviolet;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+}
+.menu h1{
+    margin: 0;
+}
+.title{
+    margin-left: 10px;
+}
+.buts{
+    display: block;
+    
+}
+.buts button{
+    color: #fff;
+    background-color: rgb(245, 13, 187);
+    cursor: pointer;
+    border: none;
+    padding: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.50s;
+    -webkit-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.75);
+}
+.buts button:last-child{
+    margin-right: 10px;
+    background-color: red;
+}
+.buts button:last-child:hover{
+    background-color: #000;
+}
+.buts button:hover{
+    background-color: rgb(177, 31, 140);;
+}
+.bod{
+    margin: 0;
+    min-height: 100vh;
+    width: 100%;
+    background-image: url(../img/nikola.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.bod p{
+    color: #fff;
+    font-size: 90px;
+    font-family: 'Oswald', sans-serif;
+}
+.foot{
+    background-color: #000000;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    font-family: 'Roboto', sans-serif;
+}
+.contenedor{
+    color: #fff;
+    width: 80%;
+    height: 100%;
+    margin-left: 120px;
+    display: flex;
+    justify-content: space-between;
+   
+}
+.des{
+    margin: 0;
+    width: 170;
+    font-size: 30px;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.des p{
+    margin-right: 10px;
+}
+.des img{
+    width: 40px;
+    height: 40px;
+    padding-top: 30px;
+}
+
+/**MODIFICAR**/
+.sabas{
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hijo{
+    width: 50%;
+    height: 400px;
+    text-align: center;
+    background-color: rgb(52, 112, 243);
+    -webkit-box-shadow: 3px 6px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 6px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 3px 6px 5px 0px rgba(0,0,0,0.75);
+}
+.hijo input{
+    width: 150px;
+    height: 20px;
+    border: none;
+    background-color: rgb(250, 249, 249);
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+}
+.modificar{
+    padding-top: 20px;
+}
+.modificar input
+{
+    width: 150px;
+    height: 40px;
+    background-color: rgb(228, 231, 14);
+    cursor: pointer;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    transition: 0.50s;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+}
+.modificar input:hover{
+    background-color: #000;
+    color: #fff;
+}
+.modificar label{
+    margin-right: 40px;
+}
